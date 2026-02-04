@@ -1,26 +1,386 @@
-/* this is the container for the pages */
+/* ============================================
+   ABOUTCODE DOCUMENTATION THEME OVERRIDES
+   Fixes for UI issues identified in testing
+   ============================================ */
+
+/* ============================================
+   1. LAYOUT & SPACING
+   Fixes: Issue #1, #4 (Sidebar layout, breadcrumb spacing)
+   ============================================ */
+
+/* Main content container */
 .wy-nav-content {
     max-width: 100%;
-    padding: 0px 40px 0px 0px;
+    padding: 0px 20px 0px 0px; /* Reduced from 40px */
     margin-top: 0px;
 }
 
+/* Content wrapper border */
 .wy-nav-content-wrap {
-    border-right: solid 1px;
+    border-right: solid 1px #e1e4e5;
 }
 
-div.rst-content {
-    max-width: 1300px;
-    border: 0;
-    padding: 10px 80px 10px 80px;
-    margin-left: 50px;
+/* Dark mode border */
+[data-theme="dark"] .wy-nav-content-wrap {
+    border-right-color: #404040;
 }
+
+/* Main content area - reduced excessive spacing */
+div.rst-content {
+    max-width: 1200px; /* Reduced from 1300px */
+    border: 0;
+    padding: 20px 40px 20px 40px; /* Reduced from 10px 80px */
+    margin-left: 20px; /* Reduced from 50px */
+}
+
+/* Reduce breadcrumb spacing */
+.wy-breadcrumbs {
+    margin-bottom: 1rem; /* Reduced excessive spacing */
+}
+
+/* ============================================
+   2. TYPOGRAPHY
+   Fixes: Issue #2 (Excessive header sizes)
+   ============================================ */
+
+/* Page titles - reduce excessive size */
+div.rst-content h1 {
+    font-size: 2.2rem !important; /* Reduced from default ~3rem */
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+}
+
+div.rst-content h2 {
+    font-size: 1.8rem !important;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+div.rst-content h3 {
+    font-size: 1.4rem !important;
+    margin-top: 1.2rem;
+    margin-bottom: 0.8rem;
+}
+
+/* ============================================
+   3. DARK MODE ENHANCEMENTS
+   Fixes: Issue #5, #7, #8 (Contrast, theme switcher, link visibility)
+   ============================================ */
+
+/* Improve sidebar contrast in dark mode */
+[data-theme="dark"] .wy-side-nav-search {
+    background-color: #1a1a1a;
+}
+
+[data-theme="dark"] .wy-nav-side {
+    background-color: #212121;
+}
+
+[data-theme="dark"] .wy-menu-vertical li.current {
+    background-color: #2a2a2a;
+}
+
+/* Improve link visibility in dark mode */
+[data-theme="dark"] div.rst-content a:not(.btn) {
+    color: #5ca8ff !important; /* Brighter blue */
+}
+
+[data-theme="dark"] div.rst-content a:not(.btn):hover {
+    color: #8dc5ff !important;
+    text-decoration: underline;
+}
+
+[data-theme="dark"] div.rst-content a:not(.btn):visited {
+    color: #7db8f5 !important;
+}
+
+/* Improve theme switcher visibility */
+.rst-versions {
+    border-top: solid 2px #27ae60;
+}
+
+[data-theme="dark"] .rst-versions {
+    background-color: #1a1a1a;
+    border-top-color: #2ecc71;
+}
+
+/* Make theme toggle button more visible */
+.rst-versions .rst-current-version {
+    padding: 12px;
+    font-weight: 500;
+}
+
+/* ============================================
+   4. NAVIGATION & SIDEBAR
+   Fixes: Issue #9 (Sidebar link density)
+   ============================================ */
+
+/* Improve sidebar link spacing and click targets */
+.wy-menu-vertical li {
+    line-height: 1.6;
+}
+
+.wy-menu-vertical a {
+    display: block;
+    padding: 0.6em 1.2em; /* Increased from default */
+    line-height: 1.4;
+}
+
+.wy-menu-vertical li.current a {
+    border: none;
+    border-left: solid 3px #2980b9;
+    padding-left: calc(1.2em - 3px);
+}
+
+.wy-menu-vertical li.toctree-l2 a {
+    padding-left: 2em;
+}
+
+.wy-menu-vertical li.toctree-l3 a {
+    padding-left: 3em;
+}
+
+/* ============================================
+   5. SEARCH RESULTS
+   Fixes: Issue #3 (Search results formatting)
+   ============================================ */
+
+/* Search results page title */
+div.rst-content h1#search-results {
+    font-size: 1.8rem !important; /* Smaller than default page titles */
+    margin-bottom: 1rem;
+}
+
+/* Search result entries */
+ul.search li {
+    padding: 1rem 0;
+    border-bottom: 1px solid #e1e4e5;
+}
+
+[data-theme="dark"] ul.search li {
+    border-bottom-color: #404040;
+}
+
+ul.search li:last-child {
+    border-bottom: none;
+}
+
+/* Search result titles */
+ul.search li a {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+/* Search result snippets */
+ul.search .context {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-top: 0.5rem;
+}
+
+[data-theme="dark"] ul.search .context {
+    color: #999;
+}
+
+/* ============================================
+   6. LISTS & CONTENT
+   Fixes: Issue #6, #10 (List indentation, bullet styles)
+   ============================================ */
+
+/* Reduce excessive list indentation */
+div.rst-content ul,
+div.rst-content ol {
+    margin-left: 1.5rem; /* Reduced from default */
+}
+
+div.rst-content ul ul,
+div.rst-content ol ol {
+    margin-left: 1.5rem;
+}
+
+/* Standardize bullet styles */
+div.rst-content ul li {
+    list-style-type: disc;
+}
+
+div.rst-content ul ul li {
+    list-style-type: circle;
+}
+
+div.rst-content ul ul ul li {
+    list-style-type: disc; /* Changed from square for consistency */
+}
+
+/* Improve list spacing */
+div.rst-content li {
+    margin-bottom: 0.5rem;
+}
+
+div.rst-content li p {
+    margin-bottom: 0.5rem;
+}
+
+/* ============================================
+   7. RESPONSIVE DESIGN
+   Fixes: Issue #12, #13 (Mobile padding, sidebar shadow)
+   ============================================ */
 
 @media (max-width: 768px) {
+    /* Improve mobile content padding */
     div.rst-content {
-        max-width: 1300px;
+        max-width: 100%;
         border: 0;
-        padding: 0px 10px 10px 10px;
+        padding: 15px 20px 20px 20px; /* Increased from 0px 10px */
         margin-left: 0px;
     }
+    
+    /* Reduce header sizes on mobile */
+    div.rst-content h1 {
+        font-size: 1.8rem !important;
+    }
+    
+    div.rst-content h2 {
+        font-size: 1.5rem !important;
+    }
+    
+    div.rst-content h3 {
+        font-size: 1.2rem !important;
+    }
+    
+    /* Improve mobile navigation */
+    .wy-nav-content {
+        padding: 0;
+    }
+    
+    /* Fix mobile sidebar shadow - make it sharper and more subtle */
+    .wy-nav-side {
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    }
+    
+    [data-theme="dark"] .wy-nav-side {
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* Improve mobile breadcrumb spacing */
+    .wy-breadcrumbs {
+        padding: 0.5rem 1rem;
+    }
+}
+
+/* Tablet adjustments */
+@media (min-width: 769px) and (max-width: 1024px) {
+    div.rst-content {
+        padding: 20px 30px;
+        margin-left: 10px;
+    }
+}
+
+/* ============================================
+   8. ACCESSIBILITY
+   Fixes: Issue #7, #11 (Theme switcher visibility, alignment)
+   ============================================ */
+
+/* Ensure consistent left alignment */
+.wy-nav-content-wrap {
+    text-align: left;
+}
+
+/* Improve focus states for keyboard navigation */
+.wy-menu-vertical a:focus,
+.wy-menu-vertical li.current a:focus {
+    outline: 2px solid #2980b9;
+    outline-offset: 2px;
+}
+
+[data-theme="dark"] .wy-menu-vertical a:focus,
+[data-theme="dark"] .wy-menu-vertical li.current a:focus {
+    outline-color: #5ca8ff;
+}
+
+/* Improve button focus states */
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+    outline: 2px solid #2980b9;
+    outline-offset: 2px;
+}
+
+[data-theme="dark"] button:focus,
+[data-theme="dark"] input:focus,
+[data-theme="dark"] select:focus,
+[data-theme="dark"] textarea:focus {
+    outline-color: #5ca8ff;
+}
+
+/* Improve code block readability */
+div.rst-content pre {
+    padding: 1rem;
+    line-height: 1.5;
+}
+
+/* Improve table styling */
+div.rst-content table.docutils {
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+}
+
+div.rst-content table.docutils th {
+    background-color: #f3f6f6;
+    font-weight: 600;
+    padding: 0.8rem;
+}
+
+[data-theme="dark"] div.rst-content table.docutils th {
+    background-color: #2a2a2a;
+}
+
+div.rst-content table.docutils td {
+    padding: 0.8rem;
+}
+
+/* ============================================
+   9. ADDITIONAL POLISH
+   Minor improvements for overall UX
+   ============================================ */
+
+/* Smooth transitions */
+.wy-menu-vertical a,
+.wy-menu-vertical li.current a,
+button,
+a {
+    transition: all 0.2s ease-in-out;
+}
+
+/* Improve horizontal rule styling */
+div.rst-content hr {
+    margin: 2rem 0;
+    border: 0;
+    border-top: 2px solid #e1e4e5;
+}
+
+[data-theme="dark"] div.rst-content hr {
+    border-top-color: #404040;
+}
+
+/* Improve admonition (note/warning boxes) spacing */
+div.rst-content .admonition {
+    margin: 1.5rem 0;
+    padding: 1rem 1.2rem;
+}
+
+/* Improve inline code styling */
+div.rst-content code.literal {
+    padding: 0.2em 0.4em;
+    font-size: 0.9em;
+    background-color: #f3f6f6;
+    border-radius: 3px;
+}
+
+[data-theme="dark"] div.rst-content code.literal {
+    background-color: #2a2a2a;
+    color: #e8e8e8;
 }
